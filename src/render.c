@@ -1,37 +1,38 @@
-#include "so_long.h"
+#include "../incl/so_long.h"
 
-// render_map: малює всю карту у вікні
 void render_map(t_game *game)
 {
-    for (y = 0; y < game->height; y++)
+    int y = 0;
+
+    // MLX42 draws images to the window via mlx_image_to_window
+    // We'll place copies of the preloaded images at tile positions.
+    // Note: depending on MLX42, images can be moved by setting img->instances[0].x/y or using mlx_image_to_window.
+
+    while (y < game->height)
     {
-        for (x = 0; x < game->width; x++)
+        int x = 0;
+        while (x < game->width)
         {
             char tile = game->map[y][x];
+            int px = x * TILE_SIZE;
+            int py = y * TILE_SIZE;
 
-            // 1. Спочатку малюємо підлогу (щоб фон завжди був)
-            mlx_put_image_to_window(game->mlx, game->win, game->tex_floor,
-                                    x * TILE_SIZE, y * TILE_SIZE);
+            // draw floor first
+            mlx_image_to_window(game->mlx, game->img_floor, px, py);
 
-            // 2. Малюємо стіну
             if (tile == '1')
-                mlx_put_image_to_window(game->mlx, game->win, game->tex_wall,
-                                        x * TILE_SIZE, y * TILE_SIZE);
-
-            // 3. Малюємо collectible
+                mlx_image_to_window(game->mlx, game->img_wall, px, py);
             else if (tile == 'C')
-                mlx_put_image_to_window(game->mlx, game->win, game->tex_collect,
-                                        x * TILE_SIZE, y * TILE_SIZE);
-
-            // 4. Малюємо вихід
+                mlx_image_to_window(game->mlx, game->img_collect, px, py);
             else if (tile == 'E')
-                mlx_put_image_to_window(game->mlx, game->win, game->tex_exit,
-                                        x * TILE_SIZE, y * TILE_SIZE);
+                mlx_image_to_window(game->mlx, game->img_exit, px, py);
 
-            // 5. Малюємо гравця
+            // draw player on top if coordinates match
             if (x == game->player_x && y == game->player_y)
-                mlx_put_image_to_window(game->mlx, game->win, game->tex_player,
-                                        x * TILE_SIZE, y * TILE_SIZE);
+                mlx_image_to_window(game->mlx, game->img_player, px, py);
+
+            x++;
         }
+        y++;
     }
 }

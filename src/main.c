@@ -1,39 +1,31 @@
 #include "../incl/so_long.h"
-#include "mlx42.h"
 
-
-#define WIN_W 800
-#define WIN_H 600
-
-int	close_window(void *param)
+int main(int argc, char **argv)
 {
-	(void)param;
-	exit(0);
-}
+    t_game game;
+    char **map;
 
-int	handle_key(int keycode, void *param)
-{
-	(void)param;
-	if (keycode == 65307) // ESC для Linux (для Windows може бути інший код)
-		exit(0);
-	return (0);
-}
+    if (argc != 2)
+        error_exit("Usage: ./so_long <map.ber>");
 
-int	main(void)
-{
-	void	*mlx;
-	void	*win;
+    if (!has_extension(argv[1], ".ber"))
+        error_exit("Error\nMap file must have .ber extension");
 
-	mlx = mlx_init();
-	if (!mlx)
-		return (1);
-	win = mlx_new_window(mlx, WIN_W, WIN_H, "so_long test");
-	if (!win)
-		return (1);
+    map = parse_map(argv[1]);
+    validate_map(map);
 
-	mlx_key_hook(win, handle_key, NULL);
-	mlx_hook(win, 17, 0, close_window, NULL); // закриття по хрестику
+    game_init(&game, map);
 
-	mlx_loop(mlx);
-	return (0);
+    // initial render
+    render_map(&game);
+
+    // setup events
+    mlx_key_hook(game.mlx, handle_key, &game);
+    mlx_close_hook(game.mlx, close_window, &game); // if available; otherwise handle ESC in key
+
+    mlx_loop(game.mlx);
+
+    // cleanup (normally unreachable because mlx_loop is blocking; game_exit calls mlx_terminate)
+    game_exit(&game);
+    return (0);
 }

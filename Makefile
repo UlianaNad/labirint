@@ -1,7 +1,7 @@
 NAME        := so_long
 CC          := gcc
-CFLAGS      := -Wall -Wextra -Werror -Iinclude -Ilibft -IMLX42/include
-LIBS        := -LMLX42/build -lmlx42 -lglfw3 -lopengl32 -lgdi32 -lwinmm
+CFLAGS := -Wall -Wextra -Werror -Iinclude -Ilibft -IMLX42/include
+LIBS := -LMLX42/build -lmlx42 -lglfw -lGL -lX11 -lpthread -lm
 
 SRC_DIR     := src
 SRC_FILES   := main.c game.c map.c render.c events.c
