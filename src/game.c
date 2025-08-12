@@ -1,3 +1,5 @@
+#include "so_long.h"
+
 // game_init: створює вікно та завантажує ресурси
 void game_init(t_game *game, char **map)
 {

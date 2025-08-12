@@ -1,3 +1,5 @@
+#include "so_long.h"
+
 // render_map: малює всю карту у вікні
 void render_map(t_game *game)
 {

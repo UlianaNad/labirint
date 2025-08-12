@@ -1,3 +1,5 @@
+#include "so_long.h"
+
 // handle_key: обробка натискання клавіш
 int handle_key(int keycode, t_game *game)
 {
