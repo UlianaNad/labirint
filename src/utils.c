@@ -1,7 +1,5 @@
 #include "../incl/so_long.h"
 
-/* ---------------- Parse map ---------------- */
-
 char **parse_map(char *filename)
 {
     int     fd;
@@ -22,8 +20,6 @@ char **parse_map(char *filename)
         error_exit("Error\nEmpty map file");
     return map;
 }
-
-/* ---------------- Helpers ---------------- */
 
 int count_lines(char **map)
 {
@@ -72,8 +68,6 @@ void find_player_position(char **map, int *px, int *py)
         y++;
     }
 }
-
-/* ---------------- Free map ---------------- */
 
 void free_map(char **map)
 {

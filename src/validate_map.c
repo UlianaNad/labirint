@@ -1,7 +1,5 @@
 #include "../incl/so_long.h"
 
-/* ---------------- Validate map ---------------- */
-
 void validate_map(char **map)
 {
     int y = 0;

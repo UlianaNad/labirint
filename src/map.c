@@ -1,11 +1,5 @@
 #include "../incl/so_long.h"
 #include "../libft/libft.h"
-#include <string.h>    // strlen, strcmp, strdup
-#include <stdlib.h>
-#include <unistd.h>    // write, read
-#include <fcntl.h>     // open, O_RDONLY
-
-/* ------------------- Helpers ------------------- */
 
 static char *strip_newline(char *s)
 {
@@ -41,8 +35,6 @@ bool has_extension(char *filename, char *ext)
     return (strcmp(filename + fn - ex, ext) == 0);
 }
 
-/* ------------------- Map manipulation ------------------- */
-
 char **append_line_to_map(char **map, char *line)
 {
     int     old_count;
@@ -76,5 +68,3 @@ char **append_line_to_map(char **map, char *line)
         free(map);
     return new_map;
 }
-
-/* ------------------- решта коду без змін ------------------- */

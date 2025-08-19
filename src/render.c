@@ -4,10 +4,6 @@ void render_map(t_game *game)
 {
     int y = 0;
 
-    // MLX42 draws images to the window via mlx_image_to_window
-    // We'll place copies of the preloaded images at tile positions.
-    // Note: depending on MLX42, images can be moved by setting img->instances[0].x/y or using mlx_image_to_window.
-
     while (y < game->height)
     {
         int x = 0;
