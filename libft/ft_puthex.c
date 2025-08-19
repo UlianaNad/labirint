@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_puthex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: unadoroz <unadoroz@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/29 13:52:34 by unadoroz          #+#    #+#             */
-/*   Updated: 2025/05/03 13:34:09 by unadoroz         ###   ########.fr       */
+/*   Created: 2025/05/30 09:53:33 by unadoroz          #+#    #+#             */
+/*   Updated: 2025/05/30 11:37:11 by unadoroz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s1, char const *set)
+int	ft_puthex(unsigned long n, char format)
 {
-	size_t	start;
-	size_t	end;
+	char	*hex;
+	int		count;
+	int		result;
 
-	if (s1 == NULL || set == NULL)
-		return (NULL);
-	start = 0;
-	end = ft_strlen(s1);
-	while (start < end && ft_strchr(set, s1[start]))
-		start++;
-	while (end > start && ft_strchr(set, s1[end - 1]))
-		end--;
-	return (ft_substr(s1, start, end - start));
+	count = 0;
+	if (format == 'x')
+		hex = "0123456789abcdef";
+	else
+		hex = "0123456789ABCDEF";
+	if (n >= 16)
+	{
+		result = ft_puthex(n / 16, format);
+		if (result < 0)
+			return (-1);
+		count += result;
+	}
+	result = ft_putchar_fd(hex[n % 16], 1);
+	if (result < 0)
+		return (-1);
+	count += result;
+	return (count);
 }

@@ -48,9 +48,8 @@ typedef struct s_game
 
 /* map / utils */
 char    **parse_map(char *filename);
-void    validate_map(char **map);
-bool    check_path(char **map);
-void    flood_fill(char **map, int x, int y);
+void    validate_map(char **map);            // змінено з int на void
+int     flood_fill_check(char **original_map, int px, int py);
 
 void    error_exit(char *msg);
 bool    has_extension(char *filename, char *ext);

@@ -1,5 +1,5 @@
 #include "../incl/so_long.h"
-
+#include <stdio.h>
 void close_window(void *param)
 {
     t_game *game = (t_game *)param;
@@ -58,7 +58,6 @@ void handle_key(struct mlx_key_data keydata, void *param)
         game->player_y = new_y;
         game->moves++;
         ft_printf("Moves: %d\n", game->moves);
-
         render_map(game);
     }
 }

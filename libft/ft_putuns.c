@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_putuns.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: unadoroz <unadoroz@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/29 13:52:34 by unadoroz          #+#    #+#             */
-/*   Updated: 2025/05/03 13:34:09 by unadoroz         ###   ########.fr       */
+/*   Created: 2025/05/30 09:54:32 by unadoroz          #+#    #+#             */
+/*   Updated: 2025/06/13 17:05:10 by unadoroz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s1, char const *set)
+int	ft_putuns(unsigned int n)
 {
-	size_t	start;
-	size_t	end;
+	int		count;
+	char	digit;
+	int		result;
 
-	if (s1 == NULL || set == NULL)
-		return (NULL);
-	start = 0;
-	end = ft_strlen(s1);
-	while (start < end && ft_strchr(set, s1[start]))
-		start++;
-	while (end > start && ft_strchr(set, s1[end - 1]))
-		end--;
-	return (ft_substr(s1, start, end - start));
+	count = 0;
+	result = 0;
+	if (n > 9)
+	{
+		result = ft_putuns(n / 10);
+		if (result < 0)
+			return (-1);
+		count += result;
+	}
+	digit = n % 10 + '0';
+	result = ft_putchar_fd(digit, 1);
+	if (result < 0)
+		return (-1);
+	count += result;
+	return (count);
 }

@@ -14,6 +14,13 @@
 # define LIBFT_H
 # include <unistd.h>
 # include <stdlib.h>
+# include <fcntl.h>
+# include <stdint.h>
+# include <stdarg.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
 // 1st part
 int		ft_isdigit(int c);
@@ -49,9 +56,14 @@ char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
-void	ft_putstr_fd(char *s, int fd);
-void	ft_putchar_fd(char c, int fd);
-void	ft_putendl_fd(char *s, int fd);
-void	ft_putnbr_fd(int n, int fd);
+int 	ft_putstr_fd(char *s, int fd);
+int 	ft_putchar_fd(char c, int fd);
+void 	ft_putendl_fd(char *s, int fd);
+int 	ft_putnbr_fd(int n, int fd);
+int     ft_printf(const char *format, ...);
+int     ft_putptr(void *ptr);
+int     ft_puthex(unsigned long n, char format);
+int     ft_putuns(unsigned int n);
+char	*get_next_line(int fd);
 
 #endif
