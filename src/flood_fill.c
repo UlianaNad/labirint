@@ -1,7 +1,5 @@
 # include "../incl/so_long.h"
-#include "libft.h"
 
-// Внутрішня рекурсивна функція flood fill
 static void flood_fill_util(char **map, int x, int y)
 {
 	if (!map[y] || x < 0 || y < 0 || map[y][x] == '\0')

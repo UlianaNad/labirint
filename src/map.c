@@ -7,7 +7,7 @@ static char *strip_newline(char *s)
 
     if (!s)
         return NULL;
-    len = strlen(s);
+    len = ft_strlen(s);
     if (len > 0 && s[len - 1] == '\n')
         s[len - 1] = '\0';
     return s;
@@ -28,11 +28,11 @@ bool has_extension(char *filename, char *ext)
 
     if (!filename || !ext)
         return false;
-    fn = strlen(filename);
-    ex = strlen(ext);
+    fn = ft_strlen(filename);
+    ex = ft_strlen(ext);
     if (fn < ex)
         return false;
-    return (strcmp(filename + fn - ex, ext) == 0);
+    return (ft_strcmp(filename + fn - ex, ext) == 0);
 }
 
 char **append_line_to_map(char **map, char *line)

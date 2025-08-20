@@ -58,7 +58,7 @@ int     count_lines(char **map);
 int     count_all_collectibles(char **map);
 void    find_player_position(char **map, int *px, int *py);
 void    free_map(char **map);
-char    **duplicate_map(char **map);
+//char    **duplicate_map(char **map);
 
 /* game */
 void    game_init(t_game *game, char **map);

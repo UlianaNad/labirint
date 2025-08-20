@@ -12,25 +12,26 @@
 
 #include "libft.h"
 
-int	ft_puthex(unsigned long n, char format)
+int	ft_putptr(void *ptr)
 {
-	char	*hex;
-	int		count;
-	int		result;
+	unsigned long	address;
+	int				count;
+	int				result;
 
+	address = (unsigned long) ptr;
 	count = 0;
-	if (format == 'x')
-		hex = "0123456789abcdef";
-	else
-		hex = "0123456789ABCDEF";
-	if (n >= 16)
+	if (address == 0)
 	{
-		result = ft_puthex(n / 16, format);
+		result = ft_putstr_fd("(nil)", 1);
 		if (result < 0)
 			return (-1);
-		count += result;
+		return (result);
 	}
-	result = ft_putchar_fd(hex[n % 16], 1);
+	result = ft_putstr_fd("0x", 1);
+	if (result < 0)
+		return (-1);
+	count += result;
+	result = ft_puthex(address, 'x');
 	if (result < 0)
 		return (-1);
 	count += result;

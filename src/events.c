@@ -1,10 +1,9 @@
 #include "../incl/so_long.h"
-#include <stdio.h>
+
 void close_window(void *param)
 {
     t_game *game = (t_game *)param;
     (void)game;
-    // викликаємо game_exit для чистки
     if (game)
         game_exit(game);
     else

@@ -13,7 +13,7 @@ SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c \
        ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c \
        ft_putendl_fd.c ft_putnbr_fd.c \
        get_next_line.c ft_printf.c \
-       ft_putptr.c ft_puthex.c ft_putuns.c
+       ft_putptr.c ft_puthex.c ft_putuns.c ft_strcmp.c
 
 OBJ = $(SRCS:.c=.o)
 
